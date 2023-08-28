@@ -1,11 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <html>
-<head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
+<head><title>표현 언어(EL) - 폼값 처리</title></head>
 <body>
 	<!--
 	폼값으로 전송된 파라미터를 받을때 EL의 내장객체를 사용할 수 있다. 
@@ -43,3 +40,9 @@
     %>
 </body>
 </html>
+
+
+
+
+
+

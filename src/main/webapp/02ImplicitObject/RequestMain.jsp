@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>내장 객체 - request</title>
+<title>Insert title here</title>
 </head>
 <body>
     <h2>1. 클라이언트와 서버의 환경정보 읽기</h2>
@@ -32,11 +32,14 @@
         자기소개:
         <textarea name="intro" cols="30" rows="4"></textarea>
         <br />
-        <!-- 
-        select태그는 multiple 속성에 따라 체크박스 혹은 라디오 2가지 형식으로 사용할 수 있다.
-        해당 속성이 추가된다면 배열 형태로 전송되므로 getParameterValues()로 받아야 한다.
-         -->
-        학력 : 
+        
+        <!--  
+        select태그는 multiple속성에 따라 체크박스 혹은 라디오 2가지 
+        형식으로 사용할 수 있다. 
+        해당 속성이 추가된다면 배열 형태로 전송되므로 getParameterValues()
+        로 받아야한다.
+        -->
+        학력 :
         <select name="grade" size="2" multiple>
         	<option value="초등">초딩</option>
         	<option value="고등">고딩</option>
@@ -49,4 +52,5 @@
         요청 헤더 정보 읽기
     </a>    
 </body>
+
 </html>
