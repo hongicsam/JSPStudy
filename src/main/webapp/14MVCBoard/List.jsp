@@ -46,6 +46,8 @@
         </tr>
     </c:when>
     <c:otherwise>  <!-- 게시물이 있을 때 -->
+    	<!-- 확장 for문 형태로 List에 저장된 레코드를 반복 출력한다.
+    	items 속성에는 반복가능한 객체를 기술하고, 순서대로 추출된 데이터는 var속성에 지정한 변수로 입력된다. -->
         <c:forEach items="${ boardLists }" var="row" varStatus="loop">    
         <tr align="center">
             <td>  <!-- 번호 -->
