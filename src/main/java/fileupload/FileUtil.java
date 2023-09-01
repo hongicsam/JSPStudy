@@ -111,8 +111,8 @@ public class FileUtil {
 	}
 	
 	//파일 다운로드
-	public static void download(HttpServletRequest req, HttpServletResponse resp,
-            String directory, String sfileName, String ofileName) {
+	public static void download(HttpServletRequest req, HttpServletResponse resp, String directory, String sfileName, String ofileName) {
+		// 디렉토리의 물리적 경로 얻어오기
         String sDirectory = req.getServletContext().getRealPath(directory);
         try {
             // 파일을 찾아 입력 스트림 생성
@@ -131,6 +131,8 @@ public class FileUtil {
             // 파일 다운로드용 응답 헤더 설정
             resp.reset();
             resp.setContentType("application/octet-stream");
+            /* 서버에 저장된 파일을 다운로드시 원본파일명으로 변경한다.
+            파일명이 한글인 경우 깨짐 현상이 발생할 수 있으므로 앞에서 깨짐처리를 먼저 진행한다. */
             resp.setHeader("Content-Disposition",
                            "attachment; filename=\"" + ofileName + "\"");
             resp.setHeader("Content-Length", "" + file.length() );

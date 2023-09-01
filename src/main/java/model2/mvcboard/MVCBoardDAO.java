@@ -153,6 +153,7 @@ public class MVCBoardDAO extends DBConnPool {
         // 결과 반환
         return dto;
     }
+    
     // 게시물의 조회수를 1 증가시킨다.
     public void updateVisitCount(String idx) {
     	String query = "UPDATE mvcboard SET "
@@ -191,6 +192,7 @@ public class MVCBoardDAO extends DBConnPool {
 		}
     	return isCorr;
     }
+    
     // 일련번호에 해당하는 게시물 1개를 삭제한다.
     public int deletePost(String idx) {
     	int result = 0;
@@ -206,11 +208,45 @@ public class MVCBoardDAO extends DBConnPool {
     	return result;
     }
     
+    // 다운로드 횟수를 1증가시킵니다.
+    public void downCountPlus(String idx) {
+    	String sql = "UPDATE mvcboard SET downcount=downcount+1 WHERE idx=?";
+    	try {
+			psmt = con.prepareStatement(sql);
+			psmt.setString(1, idx);
+			psmt.executeUpdate();
+		} catch (Exception e) {}
+    }
     
-    
-    
-    
-    
+    // 게시물 수정하기. 첨부파일까지 포함되어있음
+    public int updatePost(MVCBoardDTO dto) {
+    	int result = 0;
+    	// 쿼리문 템플릿 준비
+        String query = "UPDATE mvcboard "
+        			+ " SET title=?, name=?, content=?, ofile=?, sfile=? "
+        			+ " WHERE idx=? and pass=?";
+        /* 서블릿 게시판은 비회원제이므로 게시물 수정시 일련번호 뿐만아니라 패스워드까지 조건절로 추가한다.
+        따라서 패스워드가 일치하지 않는다면 게시물은 수정되지 않는다. */
+        try {
+        	// 쿼리문의 인파라미터 설정
+            psmt = con.prepareStatement(query);
+            psmt.setString(1, dto.getTitle());
+            psmt.setString(2, dto.getName());
+            psmt.setString(3, dto.getContent());
+            psmt.setString(4, dto.getOfile());
+            psmt.setString(5, dto.getSfile());
+            psmt.setString(6, dto.getIdx());
+            psmt.setString(7, dto.getPass());
+            // 쿼리문 실행
+            result = psmt.executeUpdate();
+        }
+        catch (Exception e) {
+            System.out.println("게시물 수정 중 예외 발생");
+            e.printStackTrace();
+        }
+        // 결과 반환
+        return result;
+    }
     
     
     
